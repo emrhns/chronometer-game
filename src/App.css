@@ -1,0 +1,1622 @@
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #050505;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background: #050505;
+  color: #ffffff;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  overflow-x: hidden;
+
+  /* Mobil tarayıcıların kendi dokunmatik davranışlarını azaltır */
+  overscroll-behavior: none;
+
+  /* Metin seçilmesini engeller */
+  -webkit-user-select: none;
+  user-select: none;
+
+  /* Mobilde uzun basma menülerini azaltır */
+  -webkit-touch-callout: none;
+}
+
+
+/* =========================================================
+   BUTTON / INPUT RESET
+   ========================================================= */
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+input {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+.app {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      rgba(120, 0, 0, 0.08) 0%,
+      rgba(30, 0, 0, 0.035) 35%,
+      rgba(0, 0, 0, 0) 70%
+    ),
+    #050505;
+
+  overflow: hidden;
+
+  /*
+   * Mobil cihazlarda sayfanın kendisinin
+   * gesture yakalamasını engeller.
+   */
+  touch-action: manipulation;
+}
+
+
+/* =========================================================
+   BLURRED RED STAR
+   ========================================================= */
+
+.app::before {
+  content: "";
+
+  position: absolute;
+
+  width: 1150px;
+  height: 1150px;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -48%);
+
+  background: rgba(150, 0, 0, 0.42);
+
+  clip-path: polygon(
+    50% 0%,
+    61% 37%,
+    100% 37%,
+    69% 59%,
+    81% 100%,
+    50% 75%,
+    19% 100%,
+    31% 59%,
+    0% 37%,
+    39% 37%
+  );
+
+  /* Buradaki eski blur(0.25s) hatalıydı */
+  filter: blur(0.25px);
+
+  opacity: 0.88;
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+/* =========================================================
+   RED LIGHT
+   ========================================================= */
+
+.app::after {
+  content: "";
+
+  position: absolute;
+
+  width: 700px;
+  height: 700px;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(180, 0, 0, 0.09) 0%,
+      rgba(120, 0, 0, 0.035) 40%,
+      transparent 72%
+    );
+
+  filter: blur(70px);
+
+  pointer-events: none;
+
+  z-index: 0;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.content {
+  position: relative;
+
+  z-index: 2;
+
+  width: min(1000px, 90%);
+
+  min-height: 100vh;
+  min-height: 100dvh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  padding:
+    70px
+    20px;
+
+  /*
+   * iPhone çentik / home indicator için
+   */
+  padding-top:
+    max(70px, env(safe-area-inset-top));
+
+  padding-bottom:
+    max(70px, env(safe-area-inset-bottom));
+}
+
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.title {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  margin-bottom: 45px;
+}
+
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.eyebrow {
+  position: relative;
+
+  margin-bottom: 12px;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  letter-spacing: 7px;
+
+  color:
+    rgba(255, 255, 255, 0.62);
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   TITLE H1
+   ========================================================= */
+
+.title h1 {
+  position: relative;
+
+  margin: 0;
+
+  font-size:
+    clamp(72px, 9vw, 125px);
+
+  line-height: 0.95;
+
+  font-weight: 800;
+
+  letter-spacing: -5px;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #eeeeee 45%,
+      #777777 100%
+    );
+
+  background-clip: text;
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.5),
+    0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================================
+   TINY RED STAR
+   ========================================================= */
+
+.tiny-star {
+  position: absolute;
+
+  top: -8px;
+  right: 10px;
+
+  font-size: 14px;
+
+  color: #ff2525;
+
+  text-shadow:
+    0 0 6px rgba(255, 0, 0, 0.8),
+    0 0 14px rgba(255, 0, 0, 0.45);
+
+  -webkit-text-fill-color: #ff2525;
+}
+
+
+/* =========================================================
+   SUBTITLE
+   ========================================================= */
+
+.title p {
+  margin:
+    18px 0 0;
+
+  font-size: 18px;
+
+  line-height: 1.5;
+
+  color:
+    rgba(255, 255, 255, 0.62);
+}
+
+
+/* =========================================================
+   ROLE TITLE
+   ========================================================= */
+
+.role-title {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 22px;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  letter-spacing: 7px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  text-transform: uppercase;
+}
+
+.role-title::before,
+.role-title::after {
+  content: "";
+
+  width: 85px;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 30, 30, 0.65)
+    );
+
+  margin:
+    0 18px;
+}
+
+.role-title::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 30, 30, 0.65),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   ROLE GRID
+   ========================================================= */
+
+.role-grid {
+  position: relative;
+
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 28px;
+
+  max-width: 850px;
+}
+
+
+/* =========================================================
+   ROLE CARD
+   ========================================================= */
+
+.role-card {
+  position: relative;
+
+  min-height: 355px;
+
+  padding: 32px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border:
+    1px solid
+    rgba(255, 30, 30, 0.45);
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  box-shadow:
+    inset 0 0 40px
+      rgba(255, 0, 0, 0.025),
+    0 15px 50px
+      rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  font-family: inherit;
+
+  /*
+   * Çok önemli:
+   * Mobilde kartın browser gesture'ına
+   * dönüşmesini engeller.
+   */
+  touch-action: manipulation;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+
+/* =========================================================
+   ROLE CARD HOVER
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .role-card:hover {
+    transform:
+      translateY(-5px);
+
+    border-color:
+      rgba(255, 40, 40, 0.9);
+
+    background:
+      linear-gradient(
+        145deg,
+        rgba(255, 30, 30, 0.08),
+        rgba(255, 255, 255, 0.025)
+      );
+
+    box-shadow:
+      inset 0 0 50px
+        rgba(255, 0, 0, 0.05),
+      0 20px 70px
+        rgba(0, 0, 0, 0.55),
+      0 0 30px
+        rgba(255, 0, 0, 0.08);
+  }
+
+  .role-card:hover .role-arrow {
+    transform:
+      translateX(7px);
+
+    text-shadow:
+      0 0 10px
+      rgba(255, 0, 0, 0.8);
+  }
+}
+
+
+/* =========================================================
+   ROLE CARD ACTIVE
+   ========================================================= */
+
+.role-card:active {
+  transform:
+    scale(0.985);
+}
+
+
+/* =========================================================
+   ROLE NUMBER
+   ========================================================= */
+
+.role-number {
+  position: absolute;
+
+  top: 25px;
+  left: 28px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  letter-spacing: 2px;
+
+  color: #ff3030;
+}
+
+
+/* =========================================================
+   ROLE ICON
+   ========================================================= */
+
+.role-icon {
+  margin-bottom: 22px;
+
+  font-size: 58px;
+
+  line-height: 1;
+
+  color: #ff3030;
+
+  text-shadow:
+    0 0 12px rgba(255, 0, 0, 0.5),
+    0 0 30px rgba(255, 0, 0, 0.15);
+}
+
+
+/* =========================================================
+   ROLE CARD TITLE
+   ========================================================= */
+
+.role-card h2 {
+  margin: 0;
+
+  font-size: 32px;
+
+  font-weight: 800;
+
+  letter-spacing: 2px;
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   ROLE CARD DESCRIPTION
+   ========================================================= */
+
+.role-card p {
+  margin:
+    10px 0 25px;
+
+  font-size: 16px;
+
+  color:
+    rgba(255, 255, 255, 0.58);
+}
+
+
+/* =========================================================
+   ROLE ARROW
+   ========================================================= */
+
+.role-arrow {
+  font-size: 28px;
+
+  color: #ff3030;
+
+  transition:
+    transform 0.25s ease,
+    text-shadow 0.25s ease;
+}
+
+
+/* =========================================================
+   GAME PANEL
+   ========================================================= */
+
+.game-panel {
+  width:
+    min(700px, 100%);
+
+  padding:
+    45px 35px 50px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  border:
+    1px solid
+    rgba(255, 30, 30, 0.35);
+
+  border-radius: 24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.012)
+    );
+
+  box-shadow:
+    inset 0 0 50px
+      rgba(255, 0, 0, 0.025),
+    0 20px 70px
+      rgba(0, 0, 0, 0.5);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+
+/* =========================================================
+   TARGET
+   ========================================================= */
+
+.target {
+  margin-bottom: 18px;
+
+  font-size: 14px;
+
+  letter-spacing: 4px;
+
+  color:
+    rgba(255, 255, 255, 0.5);
+}
+
+
+/* =========================================================
+   TIMER
+   ========================================================= */
+
+.timer {
+  font-size:
+    clamp(60px, 10vw, 110px);
+
+  font-weight: 700;
+
+  letter-spacing: -3px;
+
+  font-variant-numeric:
+    tabular-nums;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 20px
+    rgba(255, 255, 255, 0.08);
+
+  /*
+   * Rakamların hareket ederken
+   * layout değiştirmesini engeller.
+   */
+  font-feature-settings:
+    "tnum";
+}
+
+
+/* =========================================================
+   INSTRUCTION
+   ========================================================= */
+
+.instruction {
+  margin:
+    15px 0 30px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  letter-spacing: 4px;
+
+  color: #ff3030;
+}
+
+
+/* =========================================================
+   HOLD BUTTON
+   ========================================================= */
+
+.hold-button {
+  min-width: 230px;
+
+  min-height: 58px;
+
+  padding:
+    18px 35px;
+
+  border:
+    1px solid
+    rgba(255, 40, 40, 0.7);
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 30, 30, 0.18),
+      rgba(255, 30, 30, 0.05)
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 16px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  cursor: pointer;
+
+  /*
+   * OYUNUN EN ÖNEMLİ CSS AYARI
+   *
+   * Parmak buton üzerinde kaldığı sürece
+   * Safari / Chrome kendi gesture'ını
+   * başlatmasın.
+   */
+  touch-action: none;
+
+  /*
+   * iOS'ta mavi/gri tap highlight
+   */
+  -webkit-tap-highlight-color:
+    transparent;
+
+  /*
+   * Uzun basınca seçim çıkmasın
+   */
+  -webkit-user-select: none;
+  user-select: none;
+
+  -webkit-touch-callout: none;
+
+  /*
+   * Butonun istemsiz sürüklenmesini engeller
+   */
+  -webkit-user-drag: none;
+
+  box-shadow:
+    0 0 25px
+    rgba(255, 0, 0, 0.08);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   HOLD BUTTON HOVER
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .hold-button:hover {
+    transform:
+      translateY(-2px);
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 30, 30, 0.28),
+        rgba(255, 30, 30, 0.08)
+      );
+
+    box-shadow:
+      0 0 35px
+      rgba(255, 0, 0, 0.15);
+  }
+}
+
+
+/* =========================================================
+   HOLD BUTTON ACTIVE
+   ========================================================= */
+
+.hold-button:active {
+  transform:
+    scale(0.98);
+}
+
+
+/* =========================================================
+   HOLDING STATE
+   ========================================================= */
+
+.hold-button.holding {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 0, 0, 0.35),
+      rgba(120, 0, 0, 0.15)
+    );
+
+  border-color:
+    rgba(255, 60, 60, 0.95);
+
+  box-shadow:
+    0 0 40px
+    rgba(255, 0, 0, 0.2),
+    inset 0 0 30px
+    rgba(255, 0, 0, 0.08);
+
+  transform:
+    scale(0.98);
+}
+
+
+/* =========================================================
+   DISABLED BUTTON
+   ========================================================= */
+
+.hold-button:disabled {
+  cursor: not-allowed;
+
+  box-shadow: none;
+
+  transform: none;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
+
+.back-button {
+  margin-top: 28px;
+
+  border: none;
+
+  background: transparent;
+
+  color:
+    rgba(255, 255, 255, 0.5);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  letter-spacing: 2px;
+
+  cursor: pointer;
+
+  touch-action: manipulation;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+@media (hover: hover) and (pointer: fine) {
+  .back-button:hover {
+    color: #ffffff;
+
+    transform:
+      translateX(-4px);
+  }
+}
+
+
+/* =========================================================
+   GAME CODE INPUT
+   ========================================================= */
+
+.game-code-input {
+  width: 100%;
+
+  max-width: 500px;
+
+  margin-bottom: 25px;
+
+  padding:
+    18px 20px;
+
+  border:
+    1px solid
+    rgba(255, 30, 30, 0.35);
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background:
+    rgba(0, 0, 0, 0.25);
+
+  color: #ffffff;
+
+  text-align: center;
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  letter-spacing: 8px;
+
+  text-transform: uppercase;
+
+  touch-action: manipulation;
+}
+
+.game-code-input::placeholder {
+  color:
+    rgba(255, 255, 255, 0.2);
+
+  letter-spacing: 4px;
+}
+
+.game-code-input:focus {
+  border-color:
+    rgba(255, 40, 40, 0.8);
+
+  box-shadow:
+    0 0 25px
+    rgba(255, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   PLAYER NAME INPUT
+   ========================================================= */
+
+.player-name-input {
+  width: 100%;
+
+  max-width: 500px;
+
+  margin-bottom: 25px;
+
+  padding:
+    18px 20px;
+
+  border:
+    1px solid
+    rgba(255, 30, 30, 0.35);
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background:
+    rgba(0, 0, 0, 0.25);
+
+  color: #ffffff;
+
+  text-align: center;
+
+  font-size: 22px;
+
+  font-weight: 600;
+
+  touch-action: manipulation;
+}
+
+.player-name-input::placeholder {
+  color:
+    rgba(255, 255, 255, 0.25);
+}
+
+.player-name-input:focus {
+  border-color:
+    rgba(255, 40, 40, 0.8);
+
+  box-shadow:
+    0 0 25px
+    rgba(255, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   RESULTS
+   ========================================================= */
+
+.results-panel {
+  width: 100%;
+
+  max-width: 850px;
+
+  margin-top: 30px;
+}
+
+.results-title {
+  margin-bottom: 14px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 3px;
+
+  color:
+    rgba(255, 255, 255, 0.7);
+}
+
+.results-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.result-row {
+  display: grid;
+
+  grid-template-columns:
+    50px
+    1fr
+    140px
+    120px;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding:
+    14px 18px;
+
+  border:
+    1px solid
+    rgba(255, 30, 30, 0.18);
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.result-rank {
+  font-size: 14px;
+
+  font-weight: 700;
+
+  color:
+    rgba(255, 255, 255, 0.45);
+}
+
+.result-name {
+  font-size: 17px;
+
+  font-weight: 700;
+
+  color: white;
+
+  text-align: left;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+.result-time {
+  font-family: monospace;
+
+  font-size: 16px;
+
+  color: white;
+
+  text-align: right;
+}
+
+.result-difference {
+  font-family: monospace;
+
+  font-size: 14px;
+
+  color:
+    rgba(255, 80, 80, 0.9);
+
+  text-align: right;
+}
+
+.results-empty {
+  padding: 20px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255, 255, 255, 0.03);
+
+  color:
+    rgba(255, 255, 255, 0.5);
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .content {
+    width:
+      min(92%, 600px);
+
+    padding:
+      50px 15px;
+
+    padding-top:
+      max(50px, env(safe-area-inset-top));
+
+    padding-bottom:
+      max(50px, env(safe-area-inset-bottom));
+  }
+
+
+  .role-grid {
+    grid-template-columns: 1fr;
+
+    max-width: 500px;
+  }
+
+
+  .role-card {
+    min-height: 260px;
+  }
+
+
+  .app::before {
+    width: 850px;
+    height: 850px;
+  }
+
+
+  .result-row {
+    grid-template-columns:
+      45px
+      1fr
+      125px
+      100px;
+
+    gap: 10px;
+
+    padding:
+      14px 15px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+  .content {
+    width: 100%;
+
+    padding:
+      35px 14px;
+
+    padding-top:
+      max(35px, env(safe-area-inset-top));
+
+    padding-bottom:
+      max(35px, env(safe-area-inset-bottom));
+
+    /*
+     * Mobilde içerik yukarı/aşağı
+     * gereksiz zıplamasın.
+     */
+    justify-content: center;
+  }
+
+
+  /* -----------------------------------------
+     TITLE
+     ----------------------------------------- */
+
+  .title {
+    margin-bottom: 32px;
+  }
+
+
+  .title h1 {
+    font-size:
+      clamp(55px, 16vw, 80px);
+
+    letter-spacing: -3px;
+  }
+
+
+  .title p {
+    margin-top: 14px;
+
+    font-size: 15px;
+
+    max-width: 330px;
+  }
+
+
+  .eyebrow {
+    font-size: 11px;
+
+    letter-spacing: 5px;
+  }
+
+
+  /* -----------------------------------------
+     ROLE TITLE
+     ----------------------------------------- */
+
+  .role-title {
+    letter-spacing: 4px;
+
+    font-size: 11px;
+
+    margin-bottom: 18px;
+  }
+
+
+  .role-title::before,
+  .role-title::after {
+    width: 35px;
+
+    margin:
+      0 10px;
+  }
+
+
+  /* -----------------------------------------
+     ROLE CARD
+     ----------------------------------------- */
+
+  .role-grid {
+    width: 100%;
+
+    gap: 16px;
+  }
+
+
+  .role-card {
+    width: 100%;
+
+    min-height: 220px;
+
+    padding: 28px 20px;
+
+    border-radius: 18px;
+  }
+
+
+  .role-number {
+    top: 18px;
+
+    left: 20px;
+
+    font-size: 12px;
+  }
+
+
+  .role-icon {
+    margin-bottom: 15px;
+
+    font-size: 46px;
+  }
+
+
+  .role-card h2 {
+    font-size: 26px;
+
+    letter-spacing: 1px;
+  }
+
+
+  .role-card p {
+    margin:
+      7px 0 17px;
+
+    font-size: 14px;
+  }
+
+
+  .role-arrow {
+    font-size: 24px;
+  }
+
+
+  /* -----------------------------------------
+     GAME PANEL
+     ----------------------------------------- */
+
+  .game-panel {
+    width: 100%;
+
+    padding:
+      30px 18px 35px;
+
+    border-radius: 20px;
+  }
+
+
+  /* -----------------------------------------
+     TARGET
+     ----------------------------------------- */
+
+  .target {
+    margin-bottom: 15px;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+  }
+
+
+  /* -----------------------------------------
+     TIMER
+     ----------------------------------------- */
+
+  .timer {
+    width: 100%;
+
+    font-size:
+      clamp(48px, 15vw, 76px);
+
+    letter-spacing:
+      -2px;
+
+    white-space: nowrap;
+  }
+
+
+  /* -----------------------------------------
+     INSTRUCTION
+     ----------------------------------------- */
+
+  .instruction {
+    margin:
+      13px 0 25px;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+  }
+
+
+  /* -----------------------------------------
+     HOLD BUTTON
+     ----------------------------------------- */
+
+  .hold-button {
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 64px;
+
+    padding:
+      18px 20px;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+
+    border-radius: 14px;
+  }
+
+
+  /*
+   * Mobilde oyunun ana butonu
+   * ekranın dokunma alanını düzgün yakalar.
+   */
+  .hold-button.holding {
+    transform:
+      scale(0.97);
+  }
+
+
+  /* -----------------------------------------
+     BACK
+     ----------------------------------------- */
+
+  .back-button {
+    margin-top: 22px;
+
+    padding:
+      10px 20px;
+
+    font-size: 12px;
+  }
+
+
+  /* -----------------------------------------
+     INPUTS
+     ----------------------------------------- */
+
+  .game-code-input {
+    max-width: none;
+
+    margin-bottom: 20px;
+
+    padding:
+      17px 12px;
+
+    font-size: 23px;
+
+    letter-spacing: 6px;
+  }
+
+
+  .player-name-input {
+    max-width: none;
+
+    margin-bottom: 20px;
+
+    padding:
+      17px 12px;
+
+    font-size: 19px;
+  }
+
+
+  /* -----------------------------------------
+     RESULTS
+     ----------------------------------------- */
+
+  .results-panel {
+    margin-top: 20px;
+  }
+
+
+  .result-row {
+    grid-template-columns:
+      35px
+      minmax(0, 1fr);
+
+    gap: 8px 12px;
+
+    padding:
+      14px;
+
+  }
+
+
+  .result-rank {
+    grid-row: span 2;
+
+    text-align: center;
+  }
+
+
+  .result-name {
+    font-size: 15px;
+  }
+
+
+  .result-time {
+    font-size: 14px;
+
+    text-align: left;
+  }
+
+
+  .result-difference {
+    font-size: 13px;
+
+    text-align: left;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 380px) {
+
+  .content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+
+  .title h1 {
+    font-size:
+      clamp(48px, 15vw, 65px);
+  }
+
+
+  .role-card {
+    min-height: 200px;
+  }
+
+
+  .role-icon {
+    font-size: 40px;
+  }
+
+
+  .role-card h2 {
+    font-size: 23px;
+  }
+
+
+  .timer {
+    font-size:
+      clamp(43px, 14vw, 65px);
+  }
+
+
+  .hold-button {
+    min-height: 60px;
+
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   LANDSCAPE MOBILE
+   ========================================================= */
+
+@media (max-height: 600px) and (orientation: landscape) {
+
+  .content {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+
+  .title h1 {
+    font-size: 55px;
+  }
+
+
+  .role-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    max-width: 700px;
+  }
+
+
+  .role-card {
+    min-height: 190px;
+  }
+
+
+  .game-panel {
+    padding:
+      20px 25px 25px;
+  }
+
+
+  .timer {
+    font-size: 60px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
+}
