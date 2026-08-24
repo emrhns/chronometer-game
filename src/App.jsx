@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { supabase } from "./supabase";
 
-const TARGET_TIME = 180000;
+const TARGET_TIME = 60000;
 
 function App() {
   const [screen, setScreen] = useState("home");
@@ -831,14 +831,14 @@ function App() {
             </div>
 
             <h1>
-              3 DAKİKA
+              60 SANİYE
               <span className="tiny-star">
                 ★
               </span>
             </h1>
 
             <p>
-              Zamanı his. 3:00'a en yakın ol.
+              Zamanı hisset 1:00'a en yakın ol.
             </p>
 
           </div>
@@ -1118,13 +1118,13 @@ function App() {
             </div>
 
             <h1>
-              3 DAKİKA
+              60 SANİYE
             </h1>
 
             <p>
               {playerFinished
                 ? "Sonucun kaydedildi."
-                : "3:00'a en yakın olmaya çalış."}
+                : "1:00'a en yakın olmaya çalış."}
             </p>
 
           </div>
@@ -1140,7 +1140,7 @@ function App() {
               <>
                 <div className="target">
                   HEDEF&nbsp;&nbsp;
-                  03:00.00
+                  01:00.00
                 </div>
 
                 <div className="timer">
@@ -1293,7 +1293,7 @@ function App() {
             </h1>
 
             <p>
-              Yeni bir 3 dakika oyunu oluştur.
+              Yeni bir 60 saniye oyunu oluştur.
             </p>
 
           </div>
@@ -1302,7 +1302,7 @@ function App() {
 
             <div className="target">
               HEDEF&nbsp;&nbsp;
-              03:00.00
+              01:00.00
             </div>
 
             <button
@@ -1353,7 +1353,7 @@ function App() {
             </h1>
 
             <p>
-              03:00.00'a en yakın sonuç üstte.
+              01:00.00'a en yakın sonuç üstte.
             </p>
 
           </div>
